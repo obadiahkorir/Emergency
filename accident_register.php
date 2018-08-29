@@ -16,8 +16,10 @@ $sql = "INSERT INTO accident VALUES(NULL,'$location','$type','$date','$address',
 
 if (mysqli_query($conn,$sql))
 {
- header("location: accident_list.php");
-  echo "Registered Successfully";
+	echo"<script type='text/javascript'>var x=alert('Congratulations,New Incident Registered');";
+    echo"window.location='accident_list.php'";
+    echo"</script>";
+ 
 }
 else
 {

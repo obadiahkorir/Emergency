@@ -1,17 +1,15 @@
 <?php
-session_start ();
+include("session.php");
 include("config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>THE EMERGENCY ALERT SYSTEM.</title>
-    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+     <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
    <link href="assets/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
    <link href="assets/plugins/lobipanel/lobipanel.min.css" rel="stylesheet" type="text/css"/>
@@ -19,160 +17,196 @@ include("config.php");
    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
    <link href="assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css"/>
    <link href="assets/themify-icons/themify-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/toastr/toastr.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/emojionearea/emojionearea.min.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/plugins/monthly/monthly.css" rel="stylesheet" type="text/css"/>
-        <link href="assets/dist/css/stylehealth.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/toastr/toastr.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/emojionearea/emojionearea.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/plugins/monthly/monthly.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/dist/css/stylehealth.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/chatStyle.css" type="text/css" media="screen" /> 
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
-                <a href="admin_home.php" class="logo"> <!-- Logo -->
+                <a href="admin_home.php" class="logo"> 
                     <span class="logo-mini">
                         <img src="images/logo.png" alt="">
                     </span>
                     <span class="logo-lg">
-                        <img src="images/logo.png" alt=""  width="180px">
+                        <img src="images/logo.png" alt=""  width="100px">
                     </span>
                 </a>
                 <nav class="navbar navbar-static-top ">
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> 
+                    <a href="admin_home.php" class="sidebar-toggle" data-toggle="offcanvas" role="button"> 
                         <span class="sr-only">Toggle navigation</span>
                         <span class="fa fa-tasks"></span>
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <!-- Orders -->
+
                             <li class="dropdown messages-menu">
                                <a href="#" class="dropdown-toggle admin-notification" data-toggle="dropdown"> 
-                                <i class="pe-7s-cart"></i>
+                                <img src="images/alerts.png" class="img-thumbnail" alt="User Image">
                                 <span class="label label-primary">5</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header"><i class="fa fa-shopping-basket"></i> 4 Orders</li>
+                                <li class="header"> 
+                                    <img src="images/rotate.png" class="img-thumbnail" alt="User Image">
+                                <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?> Incidents</li>
                                 <li>
                                     <ul class="menu">
                                         <li ><!-- start Order -->
-                                         <a href="#" class="border-gray">
+                                         <a href="accident_list.php" class="border-gray">
                                             <div class="pull-left">
-                                                <img src="assets/dist/img/stethescope.png" class="img-thumbnail" alt="User Image"></div>
-                                                <h4>stethescope</h4>
-                                                <p><strong>total item:</strong> 21
+                                                <img src="images/acc.png" class="img-thumbnail" alt="User Image"></div>
+                                                <h4>Accidents</h4>
+                                                <p><strong>Total Incidents:</strong> 
+                                        <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                 </p>
-                                            </a>     
+                                            </a> 
+
                                         </li>
                                         <li>
-                                            <a href="#" class="border-gray">
+                                            <a href="fire_list.php" class="border-gray">
                                                 <div class="pull-left">
-                                                    <img src="assets/dist/img/nocontrol.png" class="img-thumbnail" alt="User Image"></div>
-                                                    <h4>Nocontrol</h4>
-                                                    <p><strong>total item:</strong> 11
+                                                    <img src="images/fire.png" class="img-thumbnail" alt="User Image"></div>
+                                                    <h4>Fire</h4>
+                                                    <p><strong>Total incidents:</strong>
+                                         <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                     </p>
                                                 </a> 
                                             </li>
                                             <li>
-                                                <a href="#" class="border-gray">
+                                                <a href="attack_list.php" class="border-gray">
                                                     <div class="pull-left">
-                                                        <img src="assets/dist/img/lab.png" class="img-thumbnail" alt="User Image"></div>
-                                                        <h4>lab</h4>
-                                                        <p><strong>total item:</strong> 16
+                                                        <img src="images/attack.png" class="img-thumbnail" alt="User Image"></div>
+                                                        <h4>Attacks</h4>
+                                                        <p><strong>Total Incidents:</strong>
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM attack" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                         </p>
                                                     </a> 
                                                 </li>
                                                 <li class="nav-list">
-                                                    <a href="#" class="border-gray">
+                                                    <a href="robbery_list.php" class="border-gray">
                                                         <div class="pull-left">
-                                                            <img src="assets/dist/img/therm.jpg" class="img-thumbnail" alt="User Image"></div>
-                                                            <h4>Pressure machine</h4>
-                                                            <p><strong>total item:</strong> 10
+                                                            <img src="images/robbery.png" class="img-thumbnail" alt="User Image"></div>
+                                                            <h4>Robbery</h4>
+                                                            <p><strong>Total Incidents:</strong> 
+                                                                 <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                             </p>
                                                         </a> 
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="footer"><a href="#"> See all Orders <i class="fa fa-arrow-right"></i></a></li>
+                                            <li class="footer"><a href="#">See All Alerts<i class="fa fa-arrow-right"></i></a></li>
                                         </ul>
                                     </li>
-                            <!-- Messages -->
+                           
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="pe-7s-mail"></i>
+                                    <img src="images/message.png" class="img-thumbnail" alt="User Image">
                                     <span class="label label-success">4</span>
                                 </a>
                                 
                                 <ul class="dropdown-menu">
                                     <li class="header"><i class="fa fa-envelope-o"></i>
-                                    4 Messages</li>
+                                     <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM mails" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?> Messages</li>
                                     <li>
-                                        <ul class="menu">
-                                            <li><!-- start message -->
-                                               <a href="#" class="border-gray">
-                                                    <div class="pull-left">
-                                                    <img src="assets/dist/img/avatar2.png" class="img-thumbnail" alt="User Image"></div>
-                                                    <h4>Alrazy</h4>
-                                                    <p>Lorem Ipsum is simply dummy text of...
-                                                    </p>
-                                                    <span class="label label-success pull-right">11.00am</span>
-                                                </a>       
+                                <li>
+                                    <ul class="menu">
+                                        <li ><!-- start Order -->
+                                         <a href="accident_list.php" class="border-gray">
+                                            <div class="pull-left">
+                                                <img src="images/acc.png" class="img-thumbnail" alt="User Image"></div>
+                                                <h4>Accidents</h4>
+                                                <p><strong>Total Incidents:</strong> 
+                                        <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                </p>
+                                            </a> 
 
+                                        </li>
+                                        <li>
+                                            <a href="fire_list.php" class="border-gray">
+                                                <div class="pull-left">
+                                                    <img src="images/fire.png" class="img-thumbnail" alt="User Image"></div>
+                                                    <h4>Fire</h4>
+                                                    <p><strong>Total incidents:</strong>
+                                         <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                    </p>
+                                                </a> 
                                             </li>
                                             <li>
-                                                <a href="#" class="border-gray">
+                                                <a href="attack_list.php" class="border-gray">
                                                     <div class="pull-left">
-                                                    <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image"></div>
-                                                    <h4>Tanjil</h4>
-                                                    <p>Lorem Ipsum is simply dummy text of...
-                                                    </p>
-                                                    <span class="label label-success pull-right"> 12.00am</span>
-                                                </a>       
-
+                                                        <img src="images/attack.png" class="img-thumbnail" alt="User Image"></div>
+                                                        <h4>Attacks</h4>
+                                                        <p><strong>Total Incidents:</strong>
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM attack" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                        </p>
+                                                    </a> 
+                                                </li>
+                                                <li class="nav-list">
+                                                    <a href="robbery_list.php" class="border-gray">
+                                                        <div class="pull-left">
+                                                            <img src="images/robbery.png" class="img-thumbnail" alt="User Image"></div>
+                                                            <h4>Robbery</h4>
+                                                            <p><strong>Total Incidents:</strong> 
+                                                                 <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                            </p>
+                                                        </a> 
+                                                    </li>
+                                                </ul>
                                             </li>
-                                            <li>
-                                                <a href="#" class="border-gray">
-                                                    <div class="pull-left">
-                                                    <img src="assets/dist/img/avatar3.png" class="img-thumbnail" alt="User Image"></div>
-                                                    <h4>Jahir</h4>
-                                                    <p>Lorem Ipsum is simply dummy text of...
-                                                    </p>
-                                                    <span class="label label-success pull-right"> 10.00am</span>
-                                                </a>       
-
-                                            </li>
-                                            <li>
-                                               <a href="#" class="border-gray">
-                                                    <div class="pull-left">
-                                                    <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image"></div>
-                                                    <h4>Shawon</h4>
-                                                    <p>Lorem Ipsum is simply dummy text of...
-                                                    </p>
-                                                    <span class="label label-success pull-right"> 09.00am</span>
-                                                </a>       
-
-                                            </li>
-                                            <li>
-                                                <a href="#" class="border-gray">
-                                                    <div class="pull-left">
-                                                    <img src="assets/dist/img/avatar3.png" class="img-thumbnail" alt="User Image"></div>
-                                                    <h4>Shipon</h4>
-                                                    <p>Lorem Ipsum is simply dummy text of...
-                                                    </p>
-                                                    <span class="label label-success pull-right"> 03.00pm</span>
-                                                </a>       
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">See all messages <i class=" fa fa-arrow-right"></i></a>
+                                    <li class="footer"><a href="#">See all Messages <i class=" fa fa-arrow-right"></i></a>
                                     </li>
                                 </ul>
                             </li>
                             <!-- Notifications -->
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="pe-7s-bell"></i>
+                                  <img src="images/alert.png" class="img-thumbnail" alt="User Image">
                                     <span class="label label-warning">8</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header"><i class="fa fa-bell"></i> 8 Notifications</li>
+                                    <li class="header"><img src="images/msg.png" class="img-thumbnail" alt="User Image"></i> 8 Notifications</li>
                                     <li>
                                         <ul class="menu">
                                             <li>
@@ -207,69 +241,52 @@ include("config.php");
                             <!-- Tasks -->
                             <li class="dropdown tasks-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="pe-7s-file"></i>
-                                    <span class="label label-danger">9</span>
+                                     <img src="images/users.png" class="img-thumbnail" alt="User Image">
+                                    <span class="label label-danger"> <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM users" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header"><i class="fa fa-file"></i> 9 tasks</li>
+                                    <li class="header">
+                                    <img src="images/users.png" class="img-thumbnail" alt="User Image">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM users" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?> Users</li>
                                     <li>
                                         <ul class="menu">
-                                            <li> <!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                        <i class="fa fa-check-circle"></i> Data table error
-                                                        <span class="label-primary label label-default pull-right">35%</span>
-                                                    </h3>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="35%" style="width: 35%">
-                                                            <span class="sr-only">35% Complete (primary)</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li> 
-                                            <li> 
-                                                <a href="#">
-                                                    <h3>
-                                                      <i class="fa fa-check-circle"></i>  Change theme color
-                                                       <span class="label-success label label-default pull-right">55%</span>
-                                                    </h3>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="55%" style="width: 55%">
-                                                            <span class="sr-only">55% Complete (primary)</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li> 
-                                            <li>
-                                                <a href="#">
-                                                    <h3>
-                                                        <i class="fa  fa-check-circle"></i> Change the font-family 
-                                                        <span class="label-info label label-default pull-right">60%</span>
-                                                    </h3>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="60%" style="width: 60%">
-                                                            <span class="sr-only">60% Complete (info)</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li> <!-- end task item -->
-                                            <li> <!-- Task item -->
-                                                <a href="#">
-                                                    <h3>
-                                                       <i class="fa  fa-check-circle"></i> Animation should be skip
-                                                       <span class="label-warning label label-default pull-right">80%</span>
-                                                    </h3>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="80%"  style="width: 80%">
-                                                            <span class="sr-only">80% Complete (warning)</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                            <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Names</th>
+                                                        <th>Passwords</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                      $result=mysqli_query($conn,"SELECT * FROM users ORDER BY id"); //rs.open sql,con
+                                      while ($row=mysqli_fetch_array($result))
+                                      { ?><!--open of while -->
+                                 <tr>
+                                <td><?php echo $row['username']; ?></td>
+                                 <td><?php echo $row['password']; ?></td>
+                                 <td><?php echo $row['status']; ?></td>
+                                </tr>
+                                <?php
+                               } //close of while
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                                             <!-- end task item -->
                                         </ul>
                                     </li>
-                                    <li class="footer"><a href="#">See all tasks <i class=" fa fa-arrow-right"></i></a></li>
+                                    <li class="footer"><a href="user_list.php">See All Users <i class=" fa fa-arrow-right"></i></a></li>
                                 </ul>
 
                             </li>
@@ -277,8 +294,16 @@ include("config.php");
                             <li class="dropdown dropdown-user admin-user">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
                                 <div class="user-image">
-                                <img src="assets/dist/img/avatar4.png" class="img-circle" height="40" width="40" alt="User Image">
-                                </div>
+                                 <?php
+                                include("config.php");
+                                $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
+                            $result=mysqli_query($conn,"SELECT * FROM admin where username = '".$_SESSION['session_email']."'"); while ($row=mysqli_fetch_array($result))
+                            { ?><!--open of while -->
+                            <img src="images/" class="img-circle" alt="User Image">
+                        </div>
+                         <?php
+                               } //close of while
+                            ?>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="profiles.php"><i class="fa fa-users"></i> User Profile</a></li>
@@ -294,24 +319,31 @@ include("config.php");
                 <div class="sidebar">
                     <div class="user-panel">
                         <div class="image pull-left">
-                            <img src="images/logo.png" class="img-circle" alt="User Image">
+                           <?php
+                                include("config.php");
+                                $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
+                            { ?><!--open of while -->
+                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
                         </div>
+                         <?php
+                               } //close of while
+                            ?>
                         <div class="info">
-                            <h4>Welcome,<?php echo ($_SESSION['username']); 
-                              ?>... <?php echo ($_SESSION['type'])?></h4>
+                            <h4>Welcome,<?php echo ($_SESSION['session_email']); 
+                              ?>.</h4>
                           <p><?php //echo base64_decode($_GET[msg]);?>
                             
                         </div>
                     </div>
                    
             
-              <ul class="sidebar-menu">
+                <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="admin_home.php"><i class="fa fa-hospital-o"></i><span>Dashboard</span>
+                            <a href="admin_home.php"></i><span>Dashboard</span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="#">
+                            <a href="admin_home.php">
                                 <i class="fa fa-user-md"></i><span>Admin</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
@@ -400,7 +432,7 @@ include("config.php");
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="add_poilice.php">Add Police</a></li>
+                                <li><a href="add_police.php">Add Police</a></li>
                                 <li><a href="police_list.php">Police lists</a></li>
                             </ul>
                         </li>
@@ -424,12 +456,12 @@ include("config.php");
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="patient-wise-report.html">Accident Report</a></li>
-                            <li><a href="doctor-wise-report.html">Fire Reports</a></li>
-                            <li><a href="total-report.html">Attack Report</a></li>
-                             <li><a href="total-report.html">Robbery Report</a></li>
-                              <li><a href="total-report.html">Child Abuse Report</a></li>
-                               <li><a href="total-report.html">Attack Report</a></li>
+                            <li><a href="admin_report.php">Accident Report</a></li>
+                            <li><a href="admin_report.php">Fire Reports</a></li>
+                            <li><a href="admin_report.php">Attack Report</a></li>
+                             <li><a href="admin_report.php">Robbery Report</a></li>
+                              <li><a href="admin_report.php">Child Abuse Report</a></li>
+                               <li><a href="admin_report.php">Attack Report</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -440,14 +472,14 @@ include("config.php");
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="add_employee.php">Add Employee</a></li>
-                            <li><a href="emp-list.html">Employee list</a></li>
-                            <li><a href="add-ns.html">Add Nurse</a></li>
-                            <li><a href="ns-list.html">Nurse list</a></li>
-                            <li><a href="add-ph.html">Add pharmacist</a></li>
-                            <li><a href="ph-list.html">pharmacist list</a></li>
-                            <li><a href="add-rep.html">Add Representative</a></li>
-                            <li><a href="rep-list.html">Representative list</a></li>
+                            <li><a href="add_user.php">Add Employee</a></li>
+                            <li><a href="users_list.php">Employee list</a></li>
+                            <li><a href="add_admin.php">Add Admin</a></li>
+                            <li><a href="admin_list">Admin list</a></li>
+                            <li><a href="add_police.php">Add Police</a></li>
+                            <li><a href="police_list.php">Police list</a></li>
+                            <li><a href="add_user.php">Add users</a></li>
+                            <li><a href="usr_list.php">Users List</a></li>
                             
                         </ul>
                     </li>
@@ -463,18 +495,14 @@ include("config.php");
                             <li><a href="not-list.html">Notice list</a></li>
                         </ul>
                     </li>
-                    
                     <li>
-                        <a href="mailbox.html">
+                        <a href="mailbox.php">
                          <i class="fa fa-envelope"></i><span> Mail</span>
                      </a>
-                 </li>
-                 
-                               
+                 </li>                   
             </ul>
-        </div> <!-- /.sidebar -->
+        </div> 
     </aside>
-            
             <div class="content-wrapper">
                 <section class="content-header">
                      <form action="#" method="get" class="sidebar-form search-box pull-right hidden-md hidden-lg hidden-sm">
@@ -491,8 +519,8 @@ include("config.php");
                     <div class="header-title">
                         <h1> THE EMERGENCY ALERT SYSTEM</h1>
                         <marquee>THE EMERGENCY ALERT SYSTEM. SECURITY STARTS WITH YOU.</marquee>
-                        <h4>Welcome,<?php echo ($_SESSION['username']); 
-                              ?>... <?php echo ($_SESSION['type'])?></h4>
+                        <h4>Welcome,<?php echo ($_SESSION['session_email']); 
+                              ?></h4>
                           <p><?php //echo base64_decode($_GET[msg]);?>
                         <small> Report Any Emergency Incident</small>
                         <ol class="breadcrumb hidden-xs">
@@ -501,34 +529,63 @@ include("config.php");
                         </ol>
                     </div>
                 </section>
-            <!-- Main content -->
                 <section class="content">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">15</span>
+                                    </div>
+                                    <div class="items pull-left">
+                                        <img src="images/backup.png">
+                                        <h4>DATABASE BACKUP</h4>
+                                    </div>
+                                     <a href="Database_Backup.php"><p align="right">BackUp</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                            <div class="panel panel-bd cardbox">
+                              
+                                <div class="panel-body">
+                                    <div class="statistic-box">
+                                        <h2>
+                                      <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
+
                                         <img src="images/acc.png">
-                                        <h4 align="right">Accidents </h4>
+
+                                        <h4 align="right" >Accidents</h4>
                                     </div>
+                                    <a href="accident_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
+                               
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">19</span>
+                                        <h2><span class="count-number">
+                                            <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                         <img src="images/fire.png">
                                         <h4>Fire</h4>
                                     </div>
+                                     <a href="fire_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -536,13 +593,19 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">05</span>
+                                        <h2><span class="count-number">
+                                        <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?></span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
-                                       <img src="images/robbery.png">
+                                       <img src="images/robery.png">
                                         <h4>Robbery</h4>
                                     </div>
+                                     <a href="robbery_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -550,13 +613,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">9</span>
+                                        <h2><span class="count-number">
+                                            <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM attack" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
-                                        <img src="images/attack.png">
+                                        <img src="images/thief.png">
                                         <h4>Attacks</h4>
                                     </div>
+                                     <a href="attack_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -564,13 +634,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">6</span>
+                                        <h2><span class="count-number">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                        <img src="images/child.png">
                                         <h4> Child Abuse</h4>
                                     </div>
+                                     <a href="child_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -578,13 +655,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">3</span>
+                                        <h2><span class="count-number">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM police" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                     <img src="images/police.png">
-                                    <h4>Police on Duty</h4>
+                                    <h4>Police on<br> Duty</h4>
                                     </div>
+                                     <a href="police_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -592,13 +676,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">4</span>
+                                        <h2><span class="count-number">
+                                     <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                     <img src="images/about.png">
-                                    <h4>Complaints</h4>
+                                    <h4>Wanted</h4>
                                     </div>
+                                     <a href="complaints_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -613,6 +704,7 @@ include("config.php");
                                    <img src="images/location.png">
                                     <h4>Locations</h4>
                                     </div>
+                                     <a href="locations_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -620,13 +712,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">7</span>
+                                        <h2><span class="count-number">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                    <img src="images/ambulance.png">
                                     <h4>Ambulances</h4>
                                     </div>
+                                     <a href="ambulances_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -634,13 +733,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">7</span>
+                                        <h2><span class="count-number">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                    <img src="images/email.png">
                                     <h4>Emails</h4>
                                     </div>
+                                     <a href="emails_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -648,13 +754,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">7</span>
+                                        <h2><span class="count-number">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                    <img src="images/statistics.png">
                                     <h4>Statistics</h4>
                                     </div>
+                                     <a href="statistic_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -662,13 +775,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">7</span>
+                                        <h2><span class="count-number">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                    <img src="images/employee.png">
                                     <h4>Employees</h4>
                                     </div>
+                                     <a href="employee_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -683,6 +803,7 @@ include("config.php");
                                    <img src="images/report.png">
                                     <h4>Reports</h4>
                                     </div>
+                                     <a href="reports_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -690,13 +811,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">7</span>
+                                        <h2><span class="count-number">
+                                        <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                    <img src="images/response.png">
                                     <h4>Responses</h4>
                                     </div>
+                                     <a href="responses_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -704,13 +832,20 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">7</span>
+                                        <h2><span class="count-number">
+                                        <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM hotline" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                    <img src="images/call.png">
-                                    <h4>Hotline Numbers</h4>
+                                    <h4>Hotline<br>Numbers</h4>
                                     </div>
+                                    <a href="hotline_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
@@ -718,250 +853,57 @@ include("config.php");
                             <div class="panel panel-bd cardbox">
                                 <div class="panel-body">
                                     <div class="statistic-box">
-                                        <h2><span class="count-number">7</span>
+                                        <h2><span class="count-number">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                        </span>
                                         </h2>
                                     </div>
                                     <div class="items pull-left">
                                    <img src="images/news.png">
                                     <h4>Notices</h4>
                                     </div>
+                                     <a href="notice_list.php"><img src="images/eye.png"><p align="right">View</a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 
                          </div>
-                    </div> <!-- /.row -->
-                </section> <!-- /.content -->
+                    </div> 
+                </section> 
 
-            </div> <!-- /.content-wrapper -->
+            </div> 
             <footer class="main-footer">
-                <div class="pull-right hidden-xs"> <b>Version</b> 1.0</div>
+                <div class="pull-right hidden-xs"></div>
                 <strong>Copyright &copy; 2018-2019 <a href="#">OBADIAH KORIR</a>.</strong> All rights reserved.
             </footer>
-        </div> <!-- ./wrapper -->
-        <script src="assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
-        <!-- jquery-ui --> 
+        </div> 
+        <script src="assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script> 
         <script src="assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-        <!-- Bootstrap -->
         <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- lobipanel -->
         <script src="assets/plugins/lobipanel/lobipanel.min.js" type="text/javascript"></script>
-        <!-- Pace js -->
         <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-        <!-- SlimScroll -->
         <script src="assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <!-- FastClick -->
         <script src="assets/plugins/fastclick/fastclick.min.js" type="text/javascript"></script>
-        <!-- Hadmin frame -->
         <script src="assets/dist/js/custom1.js" type="text/javascript"></script>
-        <!-- End Core Plugins
-        =====================================================================-->
-        <!-- Start Page Lavel Plugins
-        =====================================================================-->
-        <!-- Toastr js -->
         <script src="assets/plugins/toastr/toastr.min.js" type="text/javascript"></script>
-        <!-- Sparkline js -->
         <script src="assets/plugins/sparkline/sparkline.min.js" type="text/javascript"></script>
-        <!-- Data maps js -->
         <script src="assets/plugins/datamaps/d3.min.js" type="text/javascript"></script>
         <script src="assets/plugins/datamaps/topojson.min.js" type="text/javascript"></script>
         <script src="assets/plugins/datamaps/datamaps.all.min.js" type="text/javascript"></script>
-        <!-- Counter js -->
         <script src="assets/plugins/counterup/waypoints.js" type="text/javascript"></script>
         <script src="assets/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-        <!-- ChartJs JavaScript -->
         <script src="assets/plugins/chartJs/Chart.min.js" type="text/javascript"></script>
         <script src="assets/plugins/emojionearea/emojionearea.min.js" type="text/javascript"></script>
-        <!-- Monthly js -->
         <script src="assets/plugins/monthly/monthly.js" type="text/javascript"></script>
-        <!-- Data maps -->
         <script src="assets/plugins/datamaps/d3.min.js" type="text/javascript"></script>
         <script src="assets/plugins/datamaps/topojson.min.js" type="text/javascript"></script>
         <script src="assets/plugins/datamaps/datamaps.all.min.js" type="text/javascript"></script>
         <script src="assets/dist/js/custom.js" type="text/javascript"></script>
-         <script>
-                "use strict"; // Start of use strict
-                // notification
-                setTimeout(function () {
-                    toastr.options = {
-                        closeButton: true,
-                        progressBar: true,
-                        showMethod: 'slideDown',
-                        timeOut: 1000
-                    };
-                    toastr.success('Responsive Admin Theme', 'Welcome to Health Admin');
-
-                }, 1300);
-
-                //counter
-                $('.count-number').counterUp({
-                    delay: 10,
-                    time: 5000
-                });
-
-                //data maps
-                var basic_choropleth = new Datamap({
-                    element: document.getElementById("map1"),
-                    projection: 'mercator',
-                    fills: {
-                        defaultFill: "#009688",
-                        authorHasTraveledTo: "#fa0fa0"
-                    },
-                    data: {
-                        USA: {fillKey: "authorHasTraveledTo"},
-                        JPN: {fillKey: "authorHasTraveledTo"},
-                        ITA: {fillKey: "authorHasTraveledTo"},
-                        CRI: {fillKey: "authorHasTraveledTo"},
-                        KOR: {fillKey: "authorHasTraveledTo"},
-                        DEU: {fillKey: "authorHasTraveledTo"}
-                    }
-                });
-
-                var colors = d3.scale.category10();
-
-                window.setInterval(function () {
-                    basic_choropleth.updateChoropleth({
-                        USA: colors(Math.random() * 10),
-                        RUS: colors(Math.random() * 100),
-                        AUS: {fillKey: 'authorHasTraveledTo'},
-                        BRA: colors(Math.random() * 50),
-                        CAN: colors(Math.random() * 50),
-                        ZAF: colors(Math.random() * 50),
-                        IND: colors(Math.random() * 50)
-                    });
-                }, 2000);
-
-        //bar chart
-                var ctx = document.getElementById("barChart");
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                        datasets: [
-                            {
-                                label: "My First dataset",
-                                data: [65, 59, 80, 81, 56, 55, 40, 25, 35, 51, 94, 16],
-                                borderColor: "#009688",
-                                borderWidth: "0",
-                                backgroundColor: "#009688"
-                            },
-                            {
-                                label: "My Second dataset",
-                                data: [28, 48, 40, 19, 86, 27, 90, 91, 41, 25, 34, 47],
-                                borderColor: "#009688",
-                                borderWidth: "0",
-                                backgroundColor: "#009688"
-                            }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                        }
-                    }
-                });
-                      //radar chart
-                var ctx = document.getElementById("radarChart");
-                var myChart = new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: [["Eating", "Dinner"], ["Drinking", "Water"], "Sleeping", ["Designing", "Graphics"], "Coding", "Cycling", "Running"],
-                        datasets: [
-                            {
-                                label: "My First dataset",
-                                data: [65, 59, 66, 45, 56, 55, 40],
-                                borderColor: "#00968866",
-                                borderWidth: "1",
-                                backgroundColor: "rgba(0, 150, 136, 0.35)"
-                            },
-                            {
-                                label: "My Second dataset",
-                                data: [28, 12, 40, 19, 63, 27, 87],
-                                borderColor: "rgba(55, 160, 0, 0.7",
-                                borderWidth: "1",
-                                backgroundColor: "rgba(0, 150, 136, 0.35)"
-                            }
-                        ]
-                    },
-                    options: {
-                        legend: {
-                            position: 'top'
-                        },
-                        scale: {
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-
-                // Message
-                $('.message_inner').slimScroll({
-                    size: '3px',
-                    height: '320px'
-                });
-
-                //emojionearea
-                $(".emojionearea").emojioneArea({
-                    pickerPosition: "top",
-                    tonesStyle: "radio"
-                });
-
-                //monthly calender
-                $('#m_calendar').monthly({
-                    mode: 'event',
-                    //jsonUrl: 'events.json',
-                    //dataType: 'json'
-                    xmlUrl: 'events.xml'
-                });
-            
-            
-             //line chart
-                var ctx = document.getElementById("lineChart");
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                        datasets: [
-                            {
-                                label: "My First dataset",
-                                borderColor: "rgba(0,0,0,.09)",
-                                borderWidth: "1",
-                                backgroundColor: "rgba(0,0,0,.07)",
-                                data: [22, 44, 67, 43, 76, 45, 12, 45, 65, 55, 42, 61, 73]
-                            },
-                            {
-                                label: "My Second dataset",
-                                borderColor: "#009688",
-                                borderWidth: "1",
-                                backgroundColor: "#009688",
-                                pointHighlightStroke: "#009688",
-                                data: [16, 32, 18, 26, 42, 33, 44, 24, 19, 16, 67, 71, 65]
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        tooltips: {
-                            mode: 'index',
-                            intersect: false
-                        },
-                        hover: {
-                            mode: 'nearest',
-                            intersect: true
-                        }
-
-                    }
-                });
-
-
-        </script>
-
+         
     </body>
-
 </html>

@@ -1,29 +1,26 @@
 <?php
-$un = $_POST['txtusername'];
-$pw = $_POST['txtpassword'];
-$fn = $_POST['txtfirstname'];
-$ln = $_POST['txtlastname'];
-$email = $_POST['txtemail'];
-$county= $_POST['txtcounty'];
-$age= $_POST['txtage'];
-$dob= $_POST['dob'];
-$phone= $_POST['mobile'];
-$blood= $_POST['blood'];
-$gender= $_POST['gender'];
-
-include('config.php');
-
-$sql = "INSERT INTO admin VALUES(NULL,'$un','$pw','$fn','$ln','$email','$county','$age','$dob','$phone','$blood',
-'$gender')";
-
-if (mysqli_query($conn,$sql))
-{
-	header('location:aadmin_list.php');
-	echo "Registered Successfully, Welcome";
+include("config.php");
+$date=date("Y/m/d");
+$username=$_POST['txtusername'];
+$email=$_POST['txtemail'];
+$category=$_POST['txtcategory'];
+$pas=$_POST['txtpassword'];
+$password=md5($pas);
+$con_email=mysqli_query($conn,"SELECT email FROM admin WHERE email='$email'");
+$count=mysqli_num_rows($con_email);
+if($count==0){
+$sql=mysqli_query($conn,"INSERT INTO admin(username,email,category,password,date)VALUES('$username','$email','$category','$password','$date')");
+        if(!$sql){
+            die("Could not execute query. Kindly Check the Possible Error");}
+            else{
+                  echo"<script type='text/javascript'>var x=alert('Registration successful.');";
+				  echo"window.location='admin_list.php'";
+echo"</script>";
 }
-else
-{
-	die('Unable to insert data:' .mysqli_error());
 }
-
+elseif($count==1){
+echo"<script type='text/javascript'>var x=alert('Email already in use,Kindly Try an alternative Email and try to Login again');";
+				 echo"history.back()</script>";
+echo"</script>";
+}
 ?>

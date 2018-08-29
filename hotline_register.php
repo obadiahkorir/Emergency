@@ -12,8 +12,9 @@ $sql = "INSERT INTO hotline VALUES(NULL,'$hotline','$type','$county','$date','$e
 
 if (mysqli_query($conn,$sql))
 {
-	echo "Registered Successfully, Welcome";
-	header('location:hotline_list.php');
+	echo"<script type='text/javascript'>var x=alert('Congratulations,New Incident Registered');";
+    echo"window.location='hotline_list.php'";
+    echo"</script>";
 }
 else
 {

@@ -51,9 +51,10 @@ $w=array(50,70,40,85,30,20,20,20,18,15,15,15,15);
 	$this->SetFont('Arial','',12);
 	foreach ($data as $eachResult) 
 	{ //width
-		$this->Cell(50,6,$eachResult["id"],1);
-		$this->Cell(70,6,$eachResult["Username"],1);
-		$this->Cell(40,6,$eachResult["Email"],1);
+		$this->Cell(50,6,$eachResult["user_id"],1);
+		$this->Cell(70,6,$eachResult["username"],1);
+		$this->Cell(40,6,$eachResult["email"],1);
+		$this->Cell(85,6,$eachResult["category"],1);
 
 		$this->Ln();
 		 	 	 	 	
@@ -69,7 +70,7 @@ $pdf=new PDF();
 
 	
 
-$header=array('ADMIN ID','ADMIN FIRSTNAME','ADMIN E-MAIL');
+$header=array('ADMIN ID','ADMIN FIRSTNAME','ADMIN E-MAIL','CATEGORY');
 //Data loading
 //*** Load MySQL Data ***//
 

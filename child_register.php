@@ -16,8 +16,9 @@ $sql = "INSERT INTO child VALUES(NULL,'$location','$type','$county','$date','$de
 
 if (mysqli_query($conn,$sql))
 {
-	echo "Registered Successfully, Welcome";
-	header('location:child_list.php');
+	echo"<script type='text/javascript'>var x=alert('Congratulations,New Incident Registered');";
+    echo"window.location='child_list.php'";
+    echo"</script>";
 }
 else
 {

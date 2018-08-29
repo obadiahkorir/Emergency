@@ -16,8 +16,9 @@ $sql = "INSERT INTO attack VALUES(NULL,'$location','$type','$county','$date','$d
 
 if (mysqli_query($conn,$sql))
 {
-	echo "Registered Successfully, Welcome";
-	header('location:attack_list.php');
+	echo"<script type='text/javascript'>var x=alert('Congratulations,New Incident Registered');";
+    echo"window.location='attack_list.php'";
+    echo"</script>";
 }
 else
 {

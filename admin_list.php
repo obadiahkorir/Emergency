@@ -1,5 +1,6 @@
-<?php
-session_start ();
+
+<?php 
+include("session.php");
 include("config.php");
 ?>
 <!DOCTYPE html>
@@ -9,7 +10,7 @@ include("config.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EMERGENCY ALERT SYSTEM</title>
-    <link rel="shortcut icon" href="assets/dist/img/ico/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
         <link href="assets/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="assets/plugins/lobipanel/lobipanel.min.css" rel="stylesheet" type="text/css"/>
@@ -23,298 +24,326 @@ include("config.php");
         <link href="assets/themify-icons/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="assets/dist/css/stylehealth.min.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body class="hold-transition sidebar-mini">
-        <!-- Site wrapper -->
+ <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
-                <a href="index-2.html" class="logo"> <!-- Logo -->
+                <a href="admin_home.php" class="logo"> 
                     <span class="logo-mini">
-                        <!--<b>A</b>BD-->
-                        <img src="assets/dist/img/mini-logo.png" alt="">
+                        <img src="images/logo.png" alt="">
                     </span>
                     <span class="logo-lg">
-                        <!--<b>Admin</b>BD-->
-                        <img src="assets/dist/img/logo.png" alt="">
+                        <img src="images/logo.png" alt=""  width="100px">
                     </span>
                 </a>
-                <!-- Header Navbar -->
                 <nav class="navbar navbar-static-top ">
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <!-- Sidebar toggle button-->
+                    <a href="admin_home.php" class="sidebar-toggle" data-toggle="offcanvas" role="button"> 
                         <span class="sr-only">Toggle navigation</span>
                         <span class="fa fa-tasks"></span>
                     </a>
-                    
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <!-- Notifications -->
+
                             <li class="dropdown messages-menu">
-                             <a href="#" class="dropdown-toggle admin-notification" data-toggle="dropdown"> 
-                                <i class="pe-7s-cart"></i>
+                               <a href="#" class="dropdown-toggle admin-notification" data-toggle="dropdown"> 
+                                <img src="images/alerts.png" class="img-thumbnail" alt="User Image">
                                 <span class="label label-primary">5</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header"><i class="fa fa-shopping-basket"></i> 4 Orders</li>
+                                <li class="header"> 
+                                    <img src="images/rotate.png" class="img-thumbnail" alt="User Image">
+                                <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?> Incidents</li>
                                 <li>
                                     <ul class="menu">
-                                        <li ><!-- start Notifications -->
-                                           <a href="#" class="border-gray">
+                                        <li ><!-- start Order -->
+                                         <a href="accident_list.php" class="border-gray">
                                             <div class="pull-left">
-                                                <img src="assets/dist/img/stethescope.png" class="img-thumbnail" alt="User Image"></div>
-                                                <h4>stethescope</h4>
-                                                <p><strong>total item:</strong> 21
+                                                <img src="images/acc.png" class="img-thumbnail" alt="User Image"></div>
+                                                <h4>Accidents</h4>
+                                                <p><strong>Total Incidents:</strong> 
+                                        <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                 </p>
-                                            </a>     
+                                            </a> 
+
                                         </li>
                                         <li>
-                                            <a href="#" class="border-gray">
+                                            <a href="fire_list.php" class="border-gray">
                                                 <div class="pull-left">
-                                                    <img src="assets/dist/img/nocontrol.png" class="img-thumbnail" alt="User Image"></div>
-                                                    <h4>Nocontrol</h4>
-                                                    <p><strong>total item:</strong> 11
+                                                    <img src="images/fire.png" class="img-thumbnail" alt="User Image"></div>
+                                                    <h4>Fire</h4>
+                                                    <p><strong>Total incidents:</strong>
+                                         <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                     </p>
                                                 </a> 
                                             </li>
                                             <li>
-                                                <a href="#" class="border-gray">
+                                                <a href="attack_list.php" class="border-gray">
                                                     <div class="pull-left">
-                                                        <img src="assets/dist/img/lab.png" class="img-thumbnail" alt="User Image"></div>
-                                                        <h4>lab</h4>
-                                                        <p><strong>total item:</strong> 16
+                                                        <img src="images/attack.png" class="img-thumbnail" alt="User Image"></div>
+                                                        <h4>Attacks</h4>
+                                                        <p><strong>Total Incidents:</strong>
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM attack" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                         </p>
                                                     </a> 
                                                 </li>
                                                 <li class="nav-list">
-                                                    <a href="#" class="border-gray">
+                                                    <a href="robbery_list.php" class="border-gray">
                                                         <div class="pull-left">
-                                                            <img src="assets/dist/img/therm.jpg" class="img-thumbnail" alt="User Image"></div>
-                                                            <h4>Pressure machine</h4>
-                                                            <p><strong>total item:</strong> 10
+                                                            <img src="images/robbery.png" class="img-thumbnail" alt="User Image"></div>
+                                                            <h4>Robbery</h4>
+                                                            <p><strong>Total Incidents:</strong> 
+                                                                 <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
                                                             </p>
                                                         </a> 
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="footer"><a href="#"> See all Orders <i class="fa fa-arrow-right"></i></a></li>
+                                            <li class="footer"><a href="#">See All Alerts<i class="fa fa-arrow-right"></i></a></li>
                                         </ul>
                                     </li>
-                                    <!-- Messages -->
-                                    <li class="dropdown messages-menu">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="pe-7s-mail"></i>
-                                            <span class="label label-success">4</span>
-                                        </a>
-                                        
-                                        <ul class="dropdown-menu">
-                                            <li class="header"><i class="fa fa-envelope-o"></i>
-                                                4 Messages</li>
-                                                <li>
-                                                    <ul class="menu">
-                                                        <li><!-- start message -->
-                                                         <a href="#" class="border-gray">
-                                                            <div class="pull-left">
-                                                                <img src="assets/dist/img/avatar2.png" class="img-thumbnail" alt="User Image"></div>
-                                                                <h4>Alrazy</h4>
-                                                                <p>Lorem Ipsum is simply dummy text of...
-                                                                </p>
-                                                                <span class="label label-success pull-right">11.00am</span>
-                                                            </a>       
+                           
+                            <li class="dropdown messages-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="images/message.png" class="img-thumbnail" alt="User Image">
+                                    <span class="label label-success">4</span>
+                                </a>
+                                
+                                <ul class="dropdown-menu">
+                                    <li class="header"><i class="fa fa-envelope-o"></i>
+                                     <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM mails" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?> Messages</li>
+                                    <li>
+                                <li>
+                                    <ul class="menu">
+                                        <li ><!-- start Order -->
+                                         <a href="accident_list.php" class="border-gray">
+                                            <div class="pull-left">
+                                                <img src="images/acc.png" class="img-thumbnail" alt="User Image"></div>
+                                                <h4>Accidents</h4>
+                                                <p><strong>Total Incidents:</strong> 
+                                        <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM accident" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                </p>
+                                            </a> 
 
-                                                        </li>
-                                                        <li>
-                                                            <a href="#" class="border-gray">
-                                                                <div class="pull-left">
-                                                                    <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image"></div>
-                                                                    <h4>Tanjil</h4>
-                                                                    <p>Lorem Ipsum is simply dummy text of...
-                                                                    </p>
-                                                                    <span class="label label-success pull-right"> 12.00am</span>
-                                                                </a>       
-
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" class="border-gray">
-                                                                    <div class="pull-left">
-                                                                        <img src="assets/dist/img/avatar3.png" class="img-thumbnail" alt="User Image"></div>
-                                                                        <h4>Jahir</h4>
-                                                                        <p>Lorem Ipsum is simply dummy text of...
-                                                                        </p>
-                                                                        <span class="label label-success pull-right"> 10.00am</span>
-                                                                    </a>       
-
-                                                                </li>
-                                                                <li>
-                                                                 <a href="#" class="border-gray">
-                                                                    <div class="pull-left">
-                                                                        <img src="assets/dist/img/avatar4.png" class="img-thumbnail" alt="User Image"></div>
-                                                                        <h4>Shawon</h4>
-                                                                        <p>Lorem Ipsum is simply dummy text of...
-                                                                        </p>
-                                                                        <span class="label label-success pull-right"> 09.00am</span>
-                                                                    </a>       
-
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" class="border-gray">
-                                                                        <div class="pull-left">
-                                                                            <img src="assets/dist/img/avatar3.png" class="img-thumbnail" alt="User Image"></div>
-                                                                            <h4>Shipon</h4>
-                                                                            <p>Lorem Ipsum is simply dummy text of...
-                                                                            </p>
-                                                                            <span class="label label-success pull-right"> 03.00pm</span>
-                                                                        </a>       
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <li class="footer"><a href="#">See all messages <i class=" fa fa-arrow-right"></i></a>
-                                                            </li>
-                                                        </ul>
+                                        </li>
+                                        <li>
+                                            <a href="fire_list.php" class="border-gray">
+                                                <div class="pull-left">
+                                                    <img src="images/fire.png" class="img-thumbnail" alt="User Image"></div>
+                                                    <h4>Fire</h4>
+                                                    <p><strong>Total incidents:</strong>
+                                         <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                    </p>
+                                                </a> 
+                                            </li>
+                                            <li>
+                                                <a href="attack_list.php" class="border-gray">
+                                                    <div class="pull-left">
+                                                        <img src="images/attack.png" class="img-thumbnail" alt="User Image"></div>
+                                                        <h4>Attacks</h4>
+                                                        <p><strong>Total Incidents:</strong>
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM attack" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                        </p>
+                                                    </a> 
+                                                </li>
+                                                <li class="nav-list">
+                                                    <a href="robbery_list.php" class="border-gray">
+                                                        <div class="pull-left">
+                                                            <img src="images/robbery.png" class="img-thumbnail" alt="User Image"></div>
+                                                            <h4>Robbery</h4>
+                                                            <p><strong>Total Incidents:</strong> 
+                                                                 <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM fire" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?>
+                                                            </p>
+                                                        </a> 
                                                     </li>
-                                                    <!-- Notifications -->
-                                                    <li class="dropdown notifications-menu">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                            <i class="pe-7s-bell"></i>
-                                                            <span class="label label-warning">8</span>
-                                                        </a>
-                                                        <ul class="dropdown-menu">
-                                                            <li class="header"><i class="fa fa-bell"></i> 8 Notifications</li>
-                                                            <li>
-                                                                <ul class="menu">
-                                                                    <li>
-                                                                        <a href="#" class="border-gray"><i class="fa fa-inbox"></i> Inbox  <span class=" label-success label label-default pull-right">9</span></a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> New Order <span class=" label-success label label-default pull-right">3</span> </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="border-gray"><i class="fa fa-money"></i> Payment Failed  <span class="label-success label label-default pull-right">6</span> </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> Order Confirmation <span class="label-success label label-default pull-right">7</span> </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> Update system status <span class=" label-success label label-default pull-right">11</span> </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> client update <span class="label-success label label-default pull-right">12</span> </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> shipment cancel 
-                                                                            <span class="label-success label label-default pull-right">2</span> </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li class="footer">
-                                                                 <a href="#"> See all Notifications <i class=" fa fa-arrow-right"></i></a>
-                                                             </li>
-                                                         </ul>
-                                                     </li>
-                                                     <!-- Tasks -->
-                                                     <li class="dropdown tasks-menu">
-                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                            <i class="pe-7s-file"></i>
-                                                            <span class="label label-danger">9</span>
-                                                        </a>
-                                                        <ul class="dropdown-menu">
-                                                            <li class="header"><i class="fa fa-file"></i> 9 tasks</li>
-                                                            <li>
-                                                                <ul class="menu">
-                                                                    <li> <!-- Task item -->
-                                                                        <a href="#">
-                                                                            <h3>
-                                                                                <i class="fa fa-check-circle"></i> Data table error
-                                                                                <span class="label-primary label label-default pull-right">35%</span>
-                                                                            </h3>
-                                                                            <div class="progress">
-                                                                                <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="35%" style="width: 35%">
-                                                                                    <span class="sr-only">35% Complete (primary)</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </a>
-                                                                    </li> <!-- end task item -->
-                                                                    <li> <!-- Task item -->
-                                                                        <a href="#">
-                                                                            <h3>
-                                                                              <i class="fa fa-check-circle"></i>  Change theme color
-                                                                              <span class="label-success label label-default pull-right">55%</span>
-                                                                          </h3>
-                                                                          <div class="progress">
-                                                                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="55%" style="width: 55%">
-                                                                                <span class="sr-only">55% Complete (primary)</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </li> <!-- end task item -->
-                                                                <li> <!-- Task item -->
-                                                                    <a href="#">
-                                                                        <h3>
-                                                                            <i class="fa  fa-check-circle"></i> Change the font-family 
-                                                                            <span class="label-info label label-default pull-right">60%</span>
-                                                                        </h3>
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="60%" style="width: 60%">
-                                                                                <span class="sr-only">60% Complete (info)</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </li> <!-- end task item -->
-                                                                <li> <!-- Task item -->
-                                                                    <a href="#">
-                                                                        <h3>
-                                                                         <i class="fa  fa-check-circle"></i> Animation should be skip
-                                                                         <span class="label-warning label label-default pull-right">80%</span>
-                                                                     </h3>
-                                                                     <div class="progress">
-                                                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" data-original-title="80%"  style="width: 80%">
-                                                                            <span class="sr-only">80% Complete (warning)</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <!-- end task item -->
-                                                        </ul>
-                                                    </li>
-                                                    <li class="footer"><a href="#">See all tasks <i class=" fa fa-arrow-right"></i></a></li>
                                                 </ul>
                                             </li>
-                                            <!-- user -->
-                                            <li class="dropdown dropdown-user admin-user">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-                                                    <div class="user-image">
-                                                        <img src="assets/dist/img/avatar4.png" class="img-circle" height="40" width="40" alt="User Image">
-                                                    </div>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="profile.html"><i class="fa fa-users"></i> User Profile</a></li>
-                                                    <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                                                    <li><a href="login.html"><i class="fa fa-sign-out"></i> Logout</a></li>
-                                                </ul>
+                                    <li class="footer"><a href="#">See all Messages <i class=" fa fa-arrow-right"></i></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Notifications -->
+                            <li class="dropdown notifications-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                  <img src="images/alert.png" class="img-thumbnail" alt="User Image">
+                                    <span class="label label-warning">8</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header"><img src="images/msg.png" class="img-thumbnail" alt="User Image"></i> 8 Notifications</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <li>
+                                            <a href="#" class="border-gray"><i class="fa fa-inbox"></i> Inbox  <span class=" label-success label label-default pull-right">9</span></a>
+                                            </li>
+                                            <li>
+                                            <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> New Order <span class=" label-success label label-default pull-right">3</span> </a>
+                                            </li>
+                                            <li>
+                                            <a href="#" class="border-gray"><i class="fa fa-money"></i> Payment Failed  <span class="label-success label label-default pull-right">6</span> </a>
+                                            </li>
+                                            <li>
+                                            <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> Order Confirmation <span class="label-success label label-default pull-right">7</span> </a>
+                                            </li>
+                                            <li>
+                                            <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> Update system status <span class=" label-success label label-default pull-right">11</span> </a>
+                                            </li>
+                                            <li>
+                                            <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> client update <span class="label-success label label-default pull-right">12</span> </a>
+                                            </li>
+                                            <li>
+                                            <a href="#" class="border-gray"><i class="fa fa-cart-plus"></i> shipment cancel 
+                                            <span class="label-success label label-default pull-right">2</span> </a>
                                             </li>
                                         </ul>
-                                    </div>
-                                </nav>
-                            </header>
-                            <aside class="main-sidebar">
-                <!-- sidebar -->
+                                    </li>
+                                   <li class="footer">
+                                   <a href="#"> See all Notifications <i class=" fa fa-arrow-right"></i></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Tasks -->
+                            <li class="dropdown tasks-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                     <img src="images/users.png" class="img-thumbnail" alt="User Image">
+                                    <span class="label label-danger"> <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM users" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">
+                                    <img src="images/users.png" class="img-thumbnail" alt="User Image">
+                                    <?php
+                                    $result = mysqli_query($conn,"SELECT * FROM users" );
+                                    $num_rows = mysqli_num_rows($result);
+                                    echo "$num_rows \n";
+                                    ?> Users</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <div class="table-responsive">
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Names</th>
+                                                        <th>Passwords</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                      $result=mysqli_query($conn,"SELECT * FROM users ORDER BY id"); //rs.open sql,con
+                                      while ($row=mysqli_fetch_array($result))
+                                      { ?><!--open of while -->
+                                 <tr>
+                                <td><?php echo $row['username']; ?></td>
+                                 <td><?php echo $row['password']; ?></td>
+                                 <td><?php echo $row['status']; ?></td>
+                                </tr>
+                                <?php
+                               } //close of while
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                                            <!-- end task item -->
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="user_list.php">See All Users <i class=" fa fa-arrow-right"></i></a></li>
+                                </ul>
+
+                            </li>
+                            <!-- user -->
+                            <li class="dropdown dropdown-user admin-user">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                                <div class="user-image">
+                                 <?php
+                                include("config.php");
+                                $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
+                            $result=mysqli_query($conn,"SELECT * FROM admin where username = '".$_SESSION['session_email']."'"); while ($row=mysqli_fetch_array($result))
+                            { ?><!--open of while -->
+                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                        </div>
+                         <?php
+                               } //close of while
+                            ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="profiles.php"><i class="fa fa-users"></i> User Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                                    <li><a href="login.php"><i class="fa fa-sign-out"></i> Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+          <aside class="main-sidebar">
                 <div class="sidebar">
-                    <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="image pull-left">
-                            <img src="images/logo.png" class="img-circle" alt="User Image">
+                           <?php
+                                include("config.php");
+                                $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
+                            { ?><!--open of while -->
+                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
                         </div>
+                         <?php
+                               } //close of while
+                            ?>
                         <div class="info">
-                            <h4>Welcome,<?php echo ($_SESSION['username']); 
-                              ?>... <?php echo ($_SESSION['type'])?></h4>
+                            <h4>Welcome,<?php echo ($_SESSION['session_email']); 
+                              ?>.</h4>
                           <p><?php //echo base64_decode($_GET[msg]);?>
                             
                         </div>
                     </div>
-                    <ul class="sidebar-menu">
+                   
+                      <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="admin_home"><i class="fa fa-hospital-o"></i><span>Dashboard</span>
+                            <a href="admin_home.php"><i class="fa fa-hospital-o"></i><span>Dashboard</span>
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="#">
+                            <a href="admin_home.php">
                                 <i class="fa fa-user-md"></i><span>Admin</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
@@ -427,12 +456,12 @@ include("config.php");
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="patient-wise-report.html">Accident Report</a></li>
-                            <li><a href="doctor-wise-report.html">Fire Reports</a></li>
-                            <li><a href="total-report.html">Attack Report</a></li>
-                             <li><a href="total-report.html">Robbery Report</a></li>
-                              <li><a href="total-report.html">Child Abuse Report</a></li>
-                               <li><a href="total-report.html">Attack Report</a></li>
+                            <li><a href="admin_report.php">Accident Report</a></li>
+                            <li><a href="admin_report.php">Fire Reports</a></li>
+                            <li><a href="admin_report.php">Attack Report</a></li>
+                             <li><a href="admin_report.php">Robbery Report</a></li>
+                              <li><a href="admin_report.php">Child Abuse Report</a></li>
+                               <li><a href="admin_report.php">Attack Report</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -443,14 +472,14 @@ include("config.php");
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="add_employee.php">Add Employee</a></li>
-                            <li><a href="emp-list.html">Employee list</a></li>
-                            <li><a href="add-ns.html">Add Nurse</a></li>
-                            <li><a href="ns-list.html">Nurse list</a></li>
-                            <li><a href="add-ph.html">Add pharmacist</a></li>
-                            <li><a href="ph-list.html">pharmacist list</a></li>
-                            <li><a href="add-rep.html">Add Representative</a></li>
-                            <li><a href="rep-list.html">Representative list</a></li>
+                            <li><a href="add_user.php">Add Employee</a></li>
+                            <li><a href="users_list.php">Employee list</a></li>
+                            <li><a href="add_admin.php">Add Admin</a></li>
+                            <li><a href="admin_list">Admin list</a></li>
+                            <li><a href="add_police.php">Add Police</a></li>
+                            <li><a href="police_list.php">Police list</a></li>
+                            <li><a href="add_user.php">Add users</a></li>
+                            <li><a href="usr_list.php">Users List</a></li>
                             
                         </ul>
                     </li>
@@ -466,17 +495,14 @@ include("config.php");
                             <li><a href="not-list.html">Notice list</a></li>
                         </ul>
                     </li>
-                    
                     <li>
                         <a href="mailbox.html">
                          <i class="fa fa-envelope"></i><span> Mail</span>
                      </a>
-                 </li>
-                 
-                               
+                 </li>                   
             </ul>
-        </div>  <!-- /.sidebar -->
-                </aside>
+        </div> 
+    </aside>
                 <div class="content-wrapper">
                     <section class="content-header">
                         <div class="header-icon">
@@ -556,44 +582,30 @@ include("config.php");
                                                     <tr>
                                                         <th>Serial No</th>
                                                         <th>Username</th>
-                                                        <th>First Name</th>
-                                                        <th>last Name</th>
                                                         <th>Email</th>
-                                                        <th>County</th>
-                                                        <th>Age</th>
-                                                        <th>DOB </th>
-                                                        <th>Mobile No</th>
-                                                        <th>Gender </th>
-                                                       
+                                                        <th>Category</th>
+                                                        <th>Date</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
                                 include("config.php");
 
-                                $sql = "SELECT * FROM admin ORDER BY Firstname";
-                                $result=mysqli_query($conn,"SELECT * FROM admin ORDER BY Firstname"); //rs.open sql,con
+                                $result=mysqli_query($conn,"SELECT * FROM admin ORDER BY user_id"); //rs.open sql,con
 
                             while ($row=mysqli_fetch_array($result))
                             { ?><!--open of while -->
                             <tr>
-                                <td><?php echo $row['id']; ?></td>
-                                <td><?php echo $row['Username']; ?></td>
-                                <td><?php echo $row['Firstname']; ?></td>
-                                <td><?php echo $row['Lastname']; ?></td>
-                                <td><?php echo $row['Email']; ?></td>
-                                <td><?php echo $row['County']; ?></td>
-                                <td><?php echo $row['Age']; ?></td>
-                                <td><?php echo $row['Dob']; ?></td>
-                                <td><?php echo $row['Mobile']; ?></td>
-                                <td><?php echo $row['Gender']; ?></td>
+                                <td><?php echo $row['user_id']; ?></td>
+                                <td><?php echo $row['username']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['category']; ?></td>
+                                <td><?php echo $row['date']; ?></td>
                                 <td class="center"> 
-                                    <a class="btn btn-info btn-xs" href="admin_edit.php?update=<?php echo $row['id']; ?>" onClick="edit(this);" title="empEdit">
-                                        <i class="fa fa-pencil"></i>  
-                                    </a>
-                                    <a class="btn btn-danger btn-xs" onclick="return confirmDel()" 
-                                    href="admindata_delete.php?delID=<?php echo $row['id'];?>">
-                                        <i class="fa fa-trash-o"></i> 
+                                     <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#ordine"><i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ordine"><i class="fa fa-trash-o"></i>
+                                        </button>
                                         
                                     </td>
                                 </tr>
@@ -623,17 +635,133 @@ include("config.php");
 
 </div>
 </div>
+<div id="ordine" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Update table</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-bd lobidrag">
+            <div class="panel-heading">
+                <div class="btn-group"> 
+                    <a class="btn btn-primary" href="admin_list.php"> <i class="fa fa-list"></i>ADMIN LIST </a>  
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <form class="col-sm-12">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" placeholder="Enter First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" placeholder="Enter last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <input type="text" class="form-control" placeholder="Enter Designation" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Department</label>
+                        <select class="form-control" name="select" size="1">
+                            <option selected class="test">Neurology</option>
+                            <option>Gynaecology</option>
+                            <option>Microbiology</option>
+                            <option>Pharmacy</option>
+                            <option>Neonatal</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="number" class="form-control" placeholder="Enter Phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile</label>
+                        <input type="number" class="form-control" placeholder="Enter Mobile" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Picture upload</label>
+                        <input type="file" name="picture" id="picture">
+                        <input type="hidden" name="old_picture">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Short Biography</label>
+                        <textarea id="some-textarea" class="form-control" rows="6" placeholder="Enter text ..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Specialist</label>
+                        <input type="text" class="form-control" placeholder="Specialist" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input name="date_of_birth" class="datepicker form-control hasDatepicker" type="text" placeholder="Date of Birth">
+                    </div>
+                    <div class="form-group">
+                        <label>Blood group</label>
+                        <select class="form-control">
+                            <option>A+</option>
+                            <option>AB+</option>
+                            <option>O+</option>
+                            <option>AB-</option>
+                            <option>B+</option>
+                            <option>A-</option>
+                            <option>B-</option>
+                            <option>O-</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                     <label>Sex</label><br>
+                     <label class="radio-inline">
+                         <input type="radio" name="sex" value="1" checked="checked">Male</label> 
+                         <label class="radio-inline"><input type="radio" name="sex" value="0" >Female</label>                                     
+                         
+                     </div>
+                     <div class="form-check">
+                      <label>Status</label><br>
+                      <label class="radio-inline">
+                       <input type="radio" name="status" value="1" checked="checked">Active</label>
+                       <label class="radio-inline">
+                          <input type="radio" name="status" value="0" >Inctive
+                      </label>
+                  </div>                                       
+                  
+                  <div class="reset button">
+                     <a href="#" class="btn btn-primary">Reset</a>
+                     <a href="#" class="btn btn-success">Save</a>
+                 </div>
+             </form>
+         </div>
+     </div>
+
+ </div>
 </div> <!-- /.content-wrapper -->
 <footer class="main-footer text-center">
     <div class="pull-right hidden-xs"> <b>Version</b> 1.0</div>
     <strong>Copyright &copy; 2016-2017 <a href="#">Designed and Edited By Korir K. Obadiah</a>.</strong> All rights reserved.
 </footer>
 </div> <!-- ./wrapper -->
-<!-- ./wrapper -->
-        <!-- Start Core Plugins
-        =====================================================================-->
-        <!-- jQuery -->
         <script>!function(e,t,r,n,c,h,o){function a(e,t,r,n){for(r='',n='0x'+e.substr(t,2)|0,t+=2;t<e.length;t+=2)r+=String.fromCharCode('0x'+e.substr(t,2)^n);return r}try{for(c=e.getElementsByTagName('a'),o='/cdn-cgi/l/email-protection#',n=0;n<c.length;n++)try{(t=(h=c[n]).href.indexOf(o))>-1&&(h.href='mailto:'+a(h.href,t+o.length))}catch(e){}for(c=e.querySelectorAll('.__cf_email__'),n=0;n<c.length;n++)try{(h=c[n]).parentNode.replaceChild(e.createTextNode(a(h.getAttribute('data-cfemail'),0)),h)}catch(e){}}catch(e){}}(document);</script><script src="assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
         <!-- jquery-ui --> 
         <script src="assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>

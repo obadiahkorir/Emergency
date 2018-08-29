@@ -1,6 +1,6 @@
 
 <?php
-session_start ();
+include("session.php");
 include("config.php");
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ include("config.php");
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
          <header class="main-header">
-            <a href="index-2.html" class="logo"> <!-- Logo -->
+            <a href="index-2.html" class="logo"> 
                 <span class="logo-mini">
                     <!--<b>A</b>BD-->
                     <img src="assets/dist/img/mini-logo.png" alt="">
@@ -290,8 +290,7 @@ include("config.php");
                                 </div>
                             </nav>
                         </header>
-                        <!-- =============================================== -->
-                        <!-- Left side column. contains the sidebar -->
+                  
                        <aside class="main-sidebar">
                 <!-- sidebar -->
                 <div class="sidebar">
@@ -301,181 +300,14 @@ include("config.php");
                             <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="info">
-                            <h4>Welcome,<?php echo ($_SESSION['username']); 
-                              ?>... <?php echo ($_SESSION['type'])?></h4>
+                            <h4>Welcome,<?php echo ($_SESSION['session_email']); 
+                              ?>.</h4>
                           <p><?php //echo base64_decode($_GET[msg]);?>
                             
                         </div>
                     </div>
-                    <ul class="sidebar-menu">
-                        <li class="active">
-                            <a href="admin_home.php"><i class="fa fa-hospital-o"></i><span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-user-md"></i><span>Admin</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                 <li><a href="add_admin.php">Add Admin</a></li>
-                                <li><a href="add_user.php">Add User</a></li>
-                                 <li><a href="admin_list.php">Admin List</a></li>
-                                <li><a href="user_list.php">Users list</a></li>
-                                
-                            </ul>
-                        </li>
-                          <li>
-                        <a href="profiles.php">
-                         <i class="fa fa-envelope"></i><span> Profile</span>
-                     </a>
-                 </li>
-                 
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-user"></i><span>Accident</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="add_accident.php">Add Accident</a></li>
-                                <li><a href="accident_list.php">Accidents lists</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-sitemap"></i><span>Fire</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="add_fire.php">Add Fire</a></li>
-                                <li><a href="fire_list.php">Fire Lists</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-list-alt"></i> <span>Attack</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="add_attack.php">Add Attack</a></li>
-                                <li><a href="attack_list.php">Attack lists</a></li>
-                                
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-check-square-o"></i><span>Child Abuse</span>
-                                <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="add_child.php">Add child Abuse</a></li>
-                                <li><a href="child_list.php">ChildAbuse list</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-credit-card-alt"></i><span>Hotline Numbers</span>
-                                <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="add_hotline.php">Add Hotline Number</a></li>
-                                <li><a href="hotline_list.php">Hotline lists</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-credit-card-alt"></i><span>Police</span>
-                                <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="add_poilice.php">Add Police</a></li>
-                                <li><a href="police_list.php">Police lists</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-credit-card-alt"></i><span>Robbery</span>
-                                <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="add_robbery.php">Add Robbery</a></li>
-                                <li><a href="robbery_list.php">Robbery lists</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                              <i class="fa fa-file-text"></i><span>Reports</span>
-                              <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="patient-wise-report.html">Accident Report</a></li>
-                            <li><a href="doctor-wise-report.html">Fire Reports</a></li>
-                            <li><a href="total-report.html">Attack Report</a></li>
-                             <li><a href="total-report.html">Robbery Report</a></li>
-                              <li><a href="total-report.html">Child Abuse Report</a></li>
-                               <li><a href="total-report.html">Attack Report</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="widgets.html">
-                            <i class="fa fa-user-circle-o"></i><span>Human Resources</span>
-                            <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="add_employee.php">Add Employee</a></li>
-                            <li><a href="emp-list.html">Employee list</a></li>
-                            <li><a href="add-ns.html">Add Nurse</a></li>
-                            <li><a href="ns-list.html">Nurse list</a></li>
-                            <li><a href="add-ph.html">Add pharmacist</a></li>
-                            <li><a href="ph-list.html">pharmacist list</a></li>
-                            <li><a href="add-rep.html">Add Representative</a></li>
-                            <li><a href="rep-list.html">Representative list</a></li>
-                            
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-file-text-o"></i><span>Notice</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="add-notice.html">Add Notice</a></li>
-                            <li><a href="not-list.html">Notice list</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li>
-                        <a href="mailbox.html">
-                         <i class="fa fa-envelope"></i><span> Mail</span>
-                     </a>
-                 </li>
-                 
-                               
-            </ul>
-        </div> 
-    </aside>
+                    <!-- =============================================== -->
+            <!-- Content Wrapper. Contains page content -->
              <div class="content-wrapper">
                 <section class="content-header">
                     <div class="header-icon">

@@ -1,10 +1,10 @@
 <?php
 $conn = new mysqli('localhost', 'root', '');
 mysqli_select_db($conn, 'ehelp');
-$sql = "SELECT `id`,`Username`,`Firstname`,'Lastname','Email','County','Age','Mobile' FROM `admin`";
+$sql = "SELECT `user_id`,`username`,`email`,`category`,`password` FROM `admin`";
 $setRec = mysqli_query($conn, $sql);
 $columnHeader = '';
-$columnHeader = "User Id" . "\t" . "Username" . "\t" . "Second Name" . "\t". "Email" . "\t". "County" . "\t"."Age" . "\t"."Mobile Phone" . "\t";
+$columnHeader = "User Id" . "\t" . "Username" . "\t" . "EMAIL" . "\t". "CATEGORY" . "\t". "PASSWORD" . "\t";
 $setData = '';
 while ($rec = mysqli_fetch_row($setRec)) {
 $rowData = '';

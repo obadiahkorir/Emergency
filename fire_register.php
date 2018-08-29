@@ -16,8 +16,9 @@ $sql = "INSERT INTO fire VALUES(NULL,'$location','$type','$county','$date','$des
 
 if (mysqli_query($conn,$sql))
 {
-	echo "Registered Successfully, Welcome";
-	header('location:fire_list.php');
+	echo"<script type='text/javascript'>var x=alert('Congratulations,New Incident Registered');";
+    echo"window.location='fire_list.php'";
+    echo"</script>";
 }
 else
 {
