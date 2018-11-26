@@ -335,7 +335,7 @@ include("config.php");
                                 include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while

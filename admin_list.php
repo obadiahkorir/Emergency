@@ -283,15 +283,12 @@ include("config.php");
                             ?>
                             </tbody>
                         </table>
-                    </div>
-                                            <!-- end task item -->
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="user_list.php">See All Users <i class=" fa fa-arrow-right"></i></a></li>
+                    </div>      
+                        </ul>
+                         </li>
+                            <li class="footer"><a href="user_list.php">See All Users <i class=" fa fa-arrow-right"></i></a></li>
                                 </ul>
-
                             </li>
-                            <!-- user -->
                             <li class="dropdown dropdown-user admin-user">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
                                 <div class="user-image">
@@ -300,7 +297,7 @@ include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             $result=mysqli_query($conn,"SELECT * FROM admin where username = '".$_SESSION['session_email']."'"); while ($row=mysqli_fetch_array($result))
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -324,7 +321,7 @@ include("config.php");
                                 include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -520,7 +517,7 @@ include("config.php");
                             <h1>ADD NEW ADMINISTRATOR</h1>
                             <small>ADMIN LIST</small>
                             <ol class="breadcrumb hidden-xs">
-                                <li><a href="admin_home"><i class="pe-7s-home"></i> Home</a></li>
+                                <li><a href="admin_home.php"><i class="pe-7s-home"></i> Home</a></li>
                                 <li class="active">Dashboard</li>
                             </ol>
                         </div>
@@ -564,13 +561,8 @@ include("config.php");
                                                      <div class="col-sm-4 col-xs-12">
                                                         <div class="dataTables_length">
                                                             <div class="input-group custom-search-form">
-                                                                <input type="search" name="search" class="form-control" placeholder="search Admin........">
-                                                                <span class="input-group-btn">
-                                                                  <button class="btn btn-primary" type="button">
-                                                                      <span class="glyphicon glyphicon-search"></span>
-                                                                  </button>
-                                                              </span>
-                                                          </div><!-- /input-group -->
+                                                           
+                                                    
                                                       </div>
                                                   </div>
                                               </div>
@@ -585,6 +577,7 @@ include("config.php");
                                                         <th>Email</th>
                                                         <th>Category</th>
                                                         <th>Date</th>
+                                                        <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -602,15 +595,16 @@ include("config.php");
                                 <td><?php echo $row['category']; ?></td>
                                 <td><?php echo $row['date']; ?></td>
                                 <td class="center"> 
-                                     <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#ordine"><i class="fa fa-pencil"></i>
-                                        </button>
+                                   <a class="btn btn-info btn-xs"  href="admin_list.php?uID=<?php echo $row['user_id']; ?>">
+                                        <i class="fa fa-pencil"></i>  
+                                    </a>
                                         <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ordine"><i class="fa fa-trash-o"></i>
                                         </button>
                                         
                                     </td>
                                 </tr>
                                 <?php
-                               } //close of while
+                               } 
                             ?>
                             </tbody>
                         </table>
@@ -631,14 +625,12 @@ include("config.php");
         </div>
         
     </div>
-</section> <!-- /.content -->
+</section>
 
 </div>
 </div>
 <div id="ordine" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content ">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>
@@ -648,15 +640,25 @@ include("config.php");
         <div class="panel panel-bd lobidrag">
             <div class="panel-heading">
                 <div class="btn-group"> 
-                    <a class="btn btn-primary" href="admin_list.php"> <i class="fa fa-list"></i>ADMIN LIST </a>  
+                    <a class="btn btn-primary" href="#"> <i class="fa fa-list"></i>ADMIN LIST </a>  
                 </div>
             </div>
             <div class="panel-body">
-
-                <form class="col-sm-12">
+ 
+                <form class="col-sm-12" >
+                    <?php 
+session_start();
+include("config.php");
+$user_id = $_GET['id'];
+$selectQuery = "select *from accident where id = '".$ids."' ";
+$rs = mysql_query($selectQuery);
+$record = mysql_fetch_array($rs);
+if(mysql_num_rows($rs)==0)
+    //header("location:viewpolice.php");
+?>
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Enter First Name" required>
+                        <input type="text" class="form-control" value="<?php echo $record["username"]; ?>" placeholder="Enter First Name" required>
                     </div>
                     <div class="form-group">
                         <label>Last Name</label>

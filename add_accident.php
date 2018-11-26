@@ -132,13 +132,11 @@ include("config.php");
                                             <li class="footer"><a href="#">See All Alerts<i class="fa fa-arrow-right"></i></a></li>
                                         </ul>
                                     </li>
-                           
                             <li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="images/message.png" class="img-thumbnail" alt="User Image">
                                     <span class="label label-success">4</span>
                                 </a>
-                                
                                 <ul class="dropdown-menu">
                                     <li class="header"><i class="fa fa-envelope-o"></i>
                                      <?php
@@ -212,7 +210,6 @@ include("config.php");
                                     </li>
                                 </ul>
                             </li>
-                            <!-- Notifications -->
                             <li class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                   <img src="images/alert.png" class="img-thumbnail" alt="User Image">
@@ -296,8 +293,7 @@ include("config.php");
                             </tbody>
                         </table>
                     </div>
-                                            <!-- end task item -->
-                                        </ul>
+                                </ul>
                                     </li>
                                     <li class="footer"><a href="user_list.php">See All Users <i class=" fa fa-arrow-right"></i></a></li>
                                 </ul>
@@ -312,10 +308,10 @@ include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             $result=mysqli_query($conn,"SELECT * FROM admin where username = '".$_SESSION['session_email']."'"); while ($row=mysqli_fetch_array($result))
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
-                               } //close of while
+                               } 
                             ?>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -336,7 +332,7 @@ include("config.php");
                                 include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -622,8 +618,8 @@ include("config.php");
          </section>
      </div> 
      <footer class="main-footer">
-        <div class="pull-right hidden-xs"> <b>Chemisoft Solutions</b></div>
-        <strong>Copyright &copy; 2016-2017 <a href="#">Designed and edited by Korir K. Obadiah</a>.</strong> All rights reserved.
+        <div class="pull-right hidden-xs"></div>
+        <strong>Copyright &copy; 2016-2017 <a href="#">Emergency Management System</a>.</strong> All rights reserved.
     </footer>
 </div> 
         <script src="assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>

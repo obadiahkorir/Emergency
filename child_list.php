@@ -20,6 +20,21 @@ include("config.php");
         <link href="assets/themify-icons/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="assets/dist/css/stylehealth.min.css" rel="stylesheet" type="text/css"/>
     </head>
+         <script type="text/javascript">
+    function confirmDel()
+    {
+        var x = confirm("Are you sure You Want Delete?");
+
+        if (x==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+</script>
      <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
@@ -296,7 +311,7 @@ include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             $result=mysqli_query($conn,"SELECT * FROM admin where username = '".$_SESSION['session_email']."'"); while ($row=mysqli_fetch_array($result))
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } 
@@ -321,7 +336,7 @@ include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                         
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -502,9 +517,7 @@ include("config.php");
             </ul>
         </div> 
     </aside>
-            
-            <!-- =============================================== -->
-            <!-- Content Wrapper. Contains page content -->
+        
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
@@ -523,7 +536,7 @@ include("config.php");
                         <h1>ADD NEW CHILD ABUSE INCIDENT</h1>
                         <small>Child Abuse list</small>
                         <ol class="breadcrumb hidden-xs">
-                            <li><a href="index-2.html"><i class="pe-7s-home"></i> Home</a></li>
+                            <li><a href="admin_home.php"><i class="pe-7s-home"></i> Home</a></li>
                             <li class="active">Dashboard</li>
                         </ol>
                     </div>
@@ -620,13 +633,13 @@ include("config.php");
                                         <i class="fa fa-pencil"></i>  
                                     </a>
                                     <a class="btn btn-danger btn-xs" onclick="return confirmDel()" 
-                                    href="accident_delete.php?delID=<?php echo $row['id'];?>">
+                                    href="child_delete.php?delID=<?php echo $row['id'];?>">
                                         <i class="fa fa-trash-o"></i> 
                                         
                                     </td>
                                 </tr>
                                 <?php
-                               } //close of while
+                               } 
                             ?>
     </tbody>
 </table>

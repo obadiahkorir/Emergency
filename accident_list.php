@@ -3,6 +3,27 @@
 include("session.php");
 include("config.php");
 ?>
+<?php
+require_once('config.php');
+$perpage = 2;
+if(isset($_GET['page']) & !empty($_GET['page'])){
+    $curpage = $_GET['page'];
+}else{
+    $curpage = 1;
+}
+$start = ($curpage * $perpage) - $perpage;
+$PageSql = "SELECT * FROM `accident`";
+$pageres = mysqli_query($conn, $PageSql);
+$totalres = mysqli_num_rows($pageres);
+ 
+$endpage = ceil($totalres/$perpage);
+$startpage = 1;
+$nextpage = $curpage + 1;
+$previouspage = $curpage - 1;
+ 
+$ReadSql = "SELECT * FROM `accident` LIMIT $start, $perpage";
+$res = mysqli_query($conn, $ReadSql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -320,7 +341,7 @@ include("config.php");
                                 include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -335,7 +356,7 @@ include("config.php");
                    
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="admin_home.php"><i class="fa fa-hospital-o"></i><span>Dashboard</span>
+                            <a href="admin_home.php"></i><span>Dashboard</span>
                             </a>
                         </li>
                         <li class="treeview">
@@ -516,7 +537,7 @@ include("config.php");
                         <h1>ADD NEW ACCIDENT INCIDENT</h1>
                         <small>Accident list</small>
                         <ol class="breadcrumb hidden-xs">
-                            <li><a href="index-2.html"><i class="pe-7s-home"></i> Home</a></li>
+                            <li><a href="admin_home.php"><i class="pe-7s-home"></i> Home</a></li>
                             <li class="active">Dashboard</li>
                         </ol>
                     </div>
@@ -583,6 +604,19 @@ include("config.php");
                                                         <th>Gender</th>
                                                     </tr>
                                                 </thead>
+                                                <tfoot>
+                                <tr>
+                                     <th>Serial No</th>
+                                                        <th>Accident Location</th>
+                                                        <th>Date</th>
+                                                        <th>Address</th>
+                                                        <th>Mobile No</th>
+                                                        <th>Description</th>
+                                                        <th>Email Address</th>
+                                                        <th>County</th>
+                                                        <th>Gender</th>
+                                </tr>
+                            </tfoot>
                                                 <tbody>
                                                      <?php
                                           include("config.php");
@@ -618,11 +652,36 @@ include("config.php");
     </tbody>
 </table>
 </div>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+  <?php if($curpage != $startpage){ ?>
+    <li class="page-item">
+      <a class="page-link" href="?page=<?php echo $startpage ?>" tabindex="-1" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">First</span>
+      </a>
+    </li>
+    <?php } ?>
+    <?php if($curpage >= 2){ ?>
+    <li class="page-item"><a class="page-link" href="?page=<?php echo $previouspage ?>"><?php echo $previouspage ?></a></li>
+    <?php } ?>
+    <li class="page-item active"><a class="page-link" href="?page=<?php echo $curpage ?>"><?php echo $curpage ?></a></li>
+    <?php if($curpage != $endpage){ ?>
+    <li class="page-item"><a class="page-link" href="?page=<?php echo $nextpage ?>"><?php echo $nextpage ?></a></li>
+    <li class="page-item">
+      <a class="page-link" href="?page=<?php echo $endpage ?>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Last</span>
+      </a>
+    </li>
+    <?php } ?>
+  </ul>
+</nav>
 <div class="page-nation text-right">
     <ul class="pagination pagination-large">
         <li class="disabled"><span>«</span></li>
         <li class="active"><span>1</span></li>
-        <li><a href="#">2</a></li>
+        <li><a href="">2</a></li>
         <li class="disabled"><span>...</span></li><li>
         <li><a rel="next" href="#">Next</a></li>
     </ul>
@@ -634,7 +693,7 @@ include("config.php");
 </section> 
 </div> 
 <footer class="main-footer">
-    <div class="pull-right hidden-xs"> <b>Version</b> 1.0</div>
+    <div class="pull-right hidden-xs"> <b>Emergency Management System</div>
     <strong>Copyright &copy; 2018-2019 <a href="#">OBADIAH KORIR</a>.</strong> All rights reserved.
 </footer>
 </div> 

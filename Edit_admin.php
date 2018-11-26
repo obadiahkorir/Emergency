@@ -1,7 +1,15 @@
-<?php
+
+<?php 
 include("session.php");
 include("config.php");
+$ids = $_GET['uID'];
+$selectQuery = "select * from admin where user_id = '".$ids."' ";
+$rs = mysqli_query($conn,$selectQuery);
+$record = mysqli_fetch_array($rs);
+if(mysqli_num_rows($rs)==0)
+  header("location:admin_list.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -557,19 +565,19 @@ if(mysql_num_rows($rs)==0)
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label>Username</label>
-                                <input type="text" value="" id="username" value="" class="form-control" name="txtusername">
+                                <input type="text" id="username" value="<?php echo $record["username"]; ?>" class="form-control" name="txtusername">
                                 <span class="help-block small">Your unique username to the system</span>
                             </div>
                             
                             <div class="form-group col-lg-6">
                                 <label>Password</label>
-                                <input type="password" value="" id="password" class="form-control" name="txtpassword">
+                                <input type="password" value="<?php echo $record["password"]; ?>" id="password" class="form-control" name="txtpassword">
                                 <span class="help-block small">Your hard to guess password</span>
                             </div>
                 
                             <div class="form-group col-lg-6">
                                 <label>Email Address</label>
-                                <input type="email" value="" id="email" class="form-control" name="txtemail">
+                                <input type="email" value="<?php echo $record["email"]; ?>" id="email" class="form-control" name="txtemail">
                                 <span class="help-block small">Your address email to contact</span>
                             </div><br><br><br>
                     

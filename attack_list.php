@@ -20,6 +20,21 @@ include("config.php");
         <link href="assets/themify-icons/themify-icons.css" rel="stylesheet" type="text/css"/>
         <link href="assets/dist/css/stylehealth.min.css" rel="stylesheet" type="text/css"/>
     </head>
+      <script type="text/javascript">
+    function confirmDel()
+    {
+        var x = confirm("Are you sure You Want Delete?");
+
+        if (x==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+</script>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
@@ -296,7 +311,7 @@ include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             $result=mysqli_query($conn,"SELECT * FROM admin where username = '".$_SESSION['session_email']."'"); while ($row=mysqli_fetch_array($result))
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -320,7 +335,7 @@ include("config.php");
                                 include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while

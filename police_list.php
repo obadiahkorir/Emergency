@@ -17,10 +17,8 @@ $result = mysqli_query($conn,"SELECT * FROM police where id='$roll_no' ");
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>THE EMERGENCY ALERT SYSTEM</title>
 
-    <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="assets/dist/img/ico/favicon.png" type="image/x-icon">
     
         <link href="assets/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
@@ -308,7 +306,7 @@ $result = mysqli_query($conn,"SELECT * FROM police where id='$roll_no' ");
                                 $sql = "SELECT * FROM admin where Username = '".$_SESSION['username']."'";
                             $result=mysqli_query($conn,"SELECT * FROM admin where Username = '".$_SESSION['username']."'"); while ($row=mysqli_fetch_array($result))
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -333,7 +331,7 @@ $result = mysqli_query($conn,"SELECT * FROM police where id='$roll_no' ");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                          
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while

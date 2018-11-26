@@ -318,7 +318,7 @@ include("config.php");
                                 include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             { ?>
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -608,7 +608,7 @@ include("config.php");
                                         <i class="fa fa-pencil"></i>  
                                     </a>
                                     <a class="btn btn-danger btn-xs" onclick="return confirmDel()" 
-                                    href="admindata_delete.php?delID=<?php echo $row['id'];?>">
+                                    href="users_delete.php?delID=<?php echo $row['id'];?>">
                                         <i class="fa fa-trash-o"></i> 
                                         
                                     </td>

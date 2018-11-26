@@ -295,7 +295,7 @@ include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             $result=mysqli_query($conn,"SELECT * FROM admin where username = '".$_SESSION['session_email']."'"); while ($row=mysqli_fetch_array($result))
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -319,7 +319,7 @@ include("config.php");
                                 include("config.php");
                                 $sql = "SELECT * FROM admin where username = '".$_SESSION['session_email']."'";
                             { ?><!--open of while -->
-                            <img src="images/<?php echo $row['Picture']; ?>" class="img-circle" alt="User Image">
+                            <img src="images/logo.png" class="img-circle" alt="User Image">
                         </div>
                          <?php
                                } //close of while
@@ -617,7 +617,7 @@ include("config.php");
                                         <i class="fa fa-pencil"></i>  
                                     </a>
                                     <a class="btn btn-danger btn-xs" onclick="return confirmDel()" 
-                                    href="accident_delete.php?delID=<?php echo $row['id'];?>">
+                                    href="hotline_delete.php?delID=<?php echo $row['id'];?>">
                                         <i class="fa fa-trash-o"></i> 
                                         
                                     </td>
@@ -645,8 +645,8 @@ include("config.php");
 </section> <!-- /.content -->
 </div> <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <div class="pull-right hidden-xs"> <b>Version</b> 1.0</div>
-    <strong>Copyright &copy; 2017-2018 <a href="#">OBADIAH KORIR</a>.</strong> All rights reserved.
+    <div class="pull-right hidden-xs"> <b></div>
+    <strong>Copyright &copy; 2017-2018 <a href="#">Emeregency Management System</a>.</strong> All rights reserved.
 </footer>
 </div> <!-- ./wrapper -->
         <script src="assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
